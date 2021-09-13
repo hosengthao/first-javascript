@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div>
+<form>
+  <label for="UserID">User Id:</label>
+  <input type="text" id="UserID" name="UserID" value=""><br>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname" value=""><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" value=""><br>
+  <label for="birthday">Birthday:</label>
+  <input type="date" id="birthday" name="birthday" value="MM/DD/YYYY"><br>  
+  <input type="button" value="Accept" onclick="myHero()">
+</form> 
+</div>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+
+<script>
+function myHero() {
+myPerson();
+myUserid();
+dateDiff();
+myX();
+}
+    function myPerson() {
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var birthday = document.getElementById("birthday").value;
+        if (fname.length == 0){
+        document.getElementById("demo2").innerHTML = "Invalid fname";
+        } 
+        else if (lname.length == 0){
+        document.getElementById("demo2").innerHTML = "Invalid lname";
+        }
+        else if (birthday.length == 0){
+        document.getElementById("demo2").innerHTML = "Invalid birthday";
+        } else {
+        document.getElementById("demo2").innerHTML = "Valid entry";
+        }
+    }
+    function myUserid() {
+        var uid = document.getElementById("UserID").value;
+        const x = uid.match(/[A-Z]/g);
+        const y = uid.match(/[a-z]/g);
+        const z = uid.match(/[0-9]/g);
+        if ((uid.length < 8) || (uid.length > 12) || (x == undefined) || (y == undefined) || (z == undefined)){
+        document.getElementById("demo").innerHTML = "Invalid User Id";
+    } else {
+        document.getElementById("demo").innerHTML = "User Id Accepted";
+        }
+    }
+
+    function dateDiff() {
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var birthday = document.getElementById("birthday").value; 
+        var b = birthday;
+        var date1 = new Date(b);
+        var date2 = new Date();
+        var time1 = date2.getTime() - date1.getTime();
+        var days1 = time1 / (1000 * 3600 * 24);
+        document.getElementById("demo3").innerHTML =`${fname} ${lname} you have been breathing for ${days1.toFixed(0)} days!`;
+        if (days1 < (365*18)) {
+            alert("You are not old enough to take this course!")
+        }
+    }
+    function myX() {
+        let str = "";
+        let myX = "";
+        let i;
+        for (let i = 0; i < 21; i++) {
+        myX += str.padStart(i,"x") + "<br>";
+}
+document.getElementById("demo4").innerHTML = myX;
+}
+
+</script>
+
+</body>
+</html>
+ 
